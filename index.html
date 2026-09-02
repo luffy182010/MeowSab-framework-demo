@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>MeowSab</title>
+  <title>MeowSab Framework</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Navbar -->
   <header class="navbar">
 
     <a href="#" class="logo" data-page="home">
@@ -28,195 +27,124 @@
 
     <div class="nav-actions">
 
-      <button class="nav-btn search-btn" id="searchButton" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7"></circle>
-          <path d="m20 20-4-4"></path>
-        </svg>
+      <button id="searchButton" class="search-btn" type="button">
+        Search
       </button>
 
-      <div class="language-wrapper">
-        <button class="nav-btn language-btn" id="languageButton">
-          <span>EN</span>
-        </button>
-
-        <div class="language-menu" id="languageMenu">
-          <button data-language="en">English</button>
-          <button data-language="ar">العربية</button>
-        </div>
-      </div>
-
-      <button class="nav-btn theme-btn" id="themeButton" aria-label="Theme">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2"></path>
-          <path d="M12 20v2"></path>
-          <path d="m4.93 4.93 1.41 1.41"></path>
-          <path d="m17.66 17.66 1.41 1.41"></path>
-          <path d="M2 12h2"></path>
-          <path d="M20 12h2"></path>
-          <path d="m4.93 19.07 1.41-1.41"></path>
-          <path d="m17.66 6.34 1.41-1.41"></path>
-        </svg>
+      <button id="languageButton" class="language-btn" type="button">
+        EN
       </button>
 
-      <button class="profile-btn" id="profileButton">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="8" r="4"></circle>
-          <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path>
-        </svg>
-        <span>My Profile</span>
+      <button id="themeButton" class="theme-btn" type="button">
+        Theme
       </button>
 
-      <button class="nav-btn menu-btn" id="menuButton" aria-label="Menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M4 6h16"></path>
-          <path d="M4 12h16"></path>
-          <path d="M4 18h16"></path>
-        </svg>
+      <button id="profileButton" class="profile-btn" type="button">
+        My Profile
       </button>
 
-    </div>
+      <button id="menuButton" class="menu-btn" type="button">
+        ☰
+      </button>
 
-    <div class="profile-menu" id="profileMenu">
-      <div class="profile-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="8" r="4"></circle>
-          <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path>
-        </svg>
-      </div>
-
-      <h3>My Profile</h3>
-      <p>Lorem ipsum dolor sit amet.</p>
-
-      <button data-page="home">View Profile</button>
     </div>
 
   </header>
 
 
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
+  <aside id="sidebar" class="sidebar">
 
-    <button class="close-sidebar" id="closeSidebar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="m6 6 12 12"></path>
-        <path d="m18 6-12 12"></path>
-      </svg>
+    <button id="closeSidebar" class="close-sidebar" type="button">
+      ×
     </button>
 
-    <div class="sidebar-content">
+    <div class="sidebar-group">
+      <h3>Getting Started</h3>
 
-      <div class="sidebar-group">
+      <a href="#" data-page="introduction">Introduction</a>
+      <a href="#" data-page="installation">Installation</a>
+      <a href="#" data-page="configuration">Configuration</a>
+    </div>
 
-        <h4>Getting Started</h4>
+    <div class="sidebar-group">
+      <h3>Foundation</h3>
 
-        <a href="#" data-page="introduction">Introduction</a>
-        <a href="#" data-page="installation">Installation</a>
-        <a href="#" data-page="configuration">Configuration</a>
+      <a href="#" data-page="colors">Colors</a>
+      <a href="#" data-page="typography">Typography</a>
+      <a href="#" data-page="spacing">Spacing</a>
+      <a href="#" data-page="layout">Layout</a>
+      <a href="#" data-page="breakpoints">Breakpoints</a>
+    </div>
 
-      </div>
+    <div class="sidebar-group">
+      <h3>Components</h3>
 
+      <a href="#" data-page="buttons">Buttons</a>
+      <a href="#" data-page="cards">Cards</a>
+      <a href="#" data-page="inputs">Inputs</a>
+      <a href="#" data-page="select">Select</a>
+      <a href="#" data-page="checkbox">Checkbox</a>
+      <a href="#" data-page="radio">Radio</a>
+      <a href="#" data-page="badge">Badge</a>
+      <a href="#" data-page="alerts">Alerts</a>
+      <a href="#" data-page="modal">Modal</a>
+      <a href="#" data-page="dropdown">Dropdown</a>
+      <a href="#" data-page="tabs">Tabs</a>
+      <a href="#" data-page="navbar">Navbar</a>
+      <a href="#" data-page="sidebar-component">Sidebar</a>
+    </div>
 
-      <div class="sidebar-group">
+    <div class="sidebar-group">
+      <h3>Utilities</h3>
 
-        <h4>Foundation</h4>
+      <a href="#" data-page="flex">Flex</a>
+      <a href="#" data-page="grid">Grid</a>
+      <a href="#" data-page="position">Position</a>
+      <a href="#" data-page="display">Display</a>
+      <a href="#" data-page="shadows">Shadows</a>
+      <a href="#" data-page="borders">Borders</a>
+      <a href="#" data-page="effects">Effects</a>
+      <a href="#" data-page="responsive">Responsive</a>
+    </div>
 
-        <a href="#" data-page="colors">Colors</a>
-        <a href="#" data-page="typography">Typography</a>
-        <a href="#" data-page="spacing">Spacing</a>
-        <a href="#" data-page="layout">Layout</a>
-        <a href="#" data-page="breakpoints">Breakpoints</a>
+    <div class="sidebar-group">
+      <h3>Advanced</h3>
 
-      </div>
+      <a href="#" data-page="dark-mode">Dark Mode</a>
+      <a href="#" data-page="rtl">RTL</a>
+      <a href="#" data-page="customization">Customization</a>
+      <a href="#" data-page="plugins">Plugins</a>
+    </div>
 
+    <div class="sidebar-group">
+      <h3>Playground</h3>
 
-      <div class="sidebar-group">
-
-        <h4>Components</h4>
-
-        <a href="#" data-page="buttons">Buttons</a>
-        <a href="#" data-page="cards">Cards</a>
-        <a href="#" data-page="inputs">Inputs</a>
-        <a href="#" data-page="select">Select</a>
-        <a href="#" data-page="checkbox">Checkbox</a>
-        <a href="#" data-page="radio">Radio</a>
-        <a href="#" data-page="badge">Badge</a>
-        <a href="#" data-page="alerts">Alerts</a>
-        <a href="#" data-page="modal">Modal</a>
-        <a href="#" data-page="dropdown">Dropdown</a>
-        <a href="#" data-page="tabs">Tabs</a>
-        <a href="#" data-page="navbar">Navbar</a>
-        <a href="#" data-page="sidebar-component">Sidebar</a>
-
-      </div>
-
-
-      <div class="sidebar-group">
-
-        <h4>Utilities</h4>
-
-        <a href="#" data-page="flex">Flex</a>
-        <a href="#" data-page="grid">Grid</a>
-        <a href="#" data-page="position">Position</a>
-        <a href="#" data-page="display">Display</a>
-        <a href="#" data-page="shadows">Shadows</a>
-        <a href="#" data-page="borders">Borders</a>
-        <a href="#" data-page="effects">Effects</a>
-        <a href="#" data-page="responsive">Responsive</a>
-
-      </div>
-
-
-      <div class="sidebar-group">
-
-        <h4>Advanced</h4>
-
-        <a href="#" data-page="dark-mode">Dark Mode</a>
-        <a href="#" data-page="rtl">RTL</a>
-        <a href="#" data-page="customization">Customization</a>
-        <a href="#" data-page="plugins">Plugins</a>
-
-      </div>
-
-
-      <div class="sidebar-group">
-
-        <h4>Playground</h4>
-
-        <a href="#" data-page="playground">Playground</a>
-
-      </div>
-
+      <a href="#" data-page="playground">Playground</a>
     </div>
 
   </aside>
 
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
 
-  <!-- Main -->
   <main class="main-content">
 
 
     <!-- Home -->
-    <section class="page active" id="home">
+
+    <section id="home" class="page active">
 
       <div class="hero">
 
-        <span class="hero-badge">MEOWSAB FRAMEWORK</span>
+        <img src="logo.png" alt="MeowSab Logo" class="hero-logo">
 
-        <h1>
-          Build faster with
-          <span>MeowSab</span>
-        </h1>
+        <h1>MeowSab</h1>
 
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Suspendisse potenti.
         </p>
 
-        <div class="hero-actions">
+        <div class="hero-buttons">
 
           <button class="primary-btn" data-page="introduction">
             Get Started
@@ -230,57 +158,47 @@
 
       </div>
 
-
-      <div class="feature-grid">
-
-        <div class="feature-card">
-          <div class="feature-icon">&lt;/&gt;</div>
-          <h3>Simple</h3>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">✦</div>
-          <h3>Powerful</h3>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Fast</h3>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-        </div>
-
-      </div>
-
     </section>
 
 
     <!-- Docs -->
-    <section class="page" id="docs">
+
+    <section id="docs" class="page">
 
       <div class="page-header">
-        <span class="page-label">DOCUMENTATION</span>
         <h1>Documentation</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
       </div>
 
       <div class="docs-grid">
 
-        <button class="docs-card" data-page="introduction">
+        <div class="docs-card" data-page="introduction">
           <h3>Introduction</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="installation">
+        <div class="docs-card" data-page="installation">
           <h3>Installation</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="configuration">
+        <div class="docs-card" data-page="configuration">
           <h3>Configuration</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
+
+        <div class="docs-card" data-page="components">
+          <h3>Components</h3>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+
+        <div class="docs-card" data-page="utilities">
+          <h3>Utilities</h3>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
 
       </div>
 
@@ -288,75 +206,83 @@
 
 
     <!-- Components -->
-    <section class="page" id="components">
+
+    <section id="components" class="page">
 
       <div class="page-header">
-        <span class="page-label">COMPONENTS</span>
         <h1>Components</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
       </div>
 
       <div class="docs-grid">
 
-        <button class="docs-card" data-page="buttons">
+        <div class="docs-card" data-page="buttons">
           <h3>Buttons</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="cards">
+        <div class="docs-card" data-page="cards">
           <h3>Cards</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="inputs">
+        <div class="docs-card" data-page="inputs">
           <h3>Inputs</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="select">
+        <div class="docs-card" data-page="select">
           <h3>Select</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="checkbox">
+        <div class="docs-card" data-page="checkbox">
           <h3>Checkbox</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="radio">
+        <div class="docs-card" data-page="radio">
           <h3>Radio</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="badge">
+        <div class="docs-card" data-page="badge">
           <h3>Badge</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="alerts">
+        <div class="docs-card" data-page="alerts">
           <h3>Alerts</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="modal">
+        <div class="docs-card" data-page="modal">
           <h3>Modal</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="dropdown">
+        <div class="docs-card" data-page="dropdown">
           <h3>Dropdown</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="tabs">
+        <div class="docs-card" data-page="tabs">
           <h3>Tabs</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="navbar">
+        <div class="docs-card" data-page="navbar">
           <h3>Navbar</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
+
+        <div class="docs-card" data-page="sidebar-component">
+          <h3>Sidebar</h3>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
 
       </div>
 
@@ -364,55 +290,60 @@
 
 
     <!-- Utilities -->
-    <section class="page" id="utilities">
+
+    <section id="utilities" class="page">
 
       <div class="page-header">
-        <span class="page-label">UTILITIES</span>
+
         <h1>Utilities</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+
       </div>
 
       <div class="docs-grid">
 
-        <button class="docs-card" data-page="flex">
+        <div class="docs-card" data-page="flex">
           <h3>Flex</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="grid">
+        <div class="docs-card" data-page="grid">
           <h3>Grid</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="position">
+        <div class="docs-card" data-page="position">
           <h3>Position</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="display">
+        <div class="docs-card" data-page="display">
           <h3>Display</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="shadows">
+        <div class="docs-card" data-page="shadows">
           <h3>Shadows</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="borders">
+        <div class="docs-card" data-page="borders">
           <h3>Borders</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="effects">
+        <div class="docs-card" data-page="effects">
           <h3>Effects</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
-        <button class="docs-card" data-page="responsive">
+        <div class="docs-card" data-page="responsive">
           <h3>Responsive</h3>
           <p>Lorem ipsum dolor sit amet.</p>
-        </button>
+        </div>
 
       </div>
 
@@ -420,43 +351,31 @@
 
 
     <!-- Introduction -->
-    <section class="page" id="introduction">
+
+    <section id="introduction" class="page">
 
       <div class="page-header">
-        <span class="page-label">GETTING STARTED</span>
         <h1>Introduction</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="example">
 
-        <h2>Example</h2>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-
-        <div class="code-preview">
-
-          <div class="preview-content">
-            <h2 class="demo-title">Hello MeowSab</h2>
-            <button class="demo-button">Button</button>
-          </div>
-
+        <div class="example-info">
+          <h3>MeowSab</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
 
         <div class="code-block">
 
           <div class="code-header">
             <span>HTML</span>
-            <button class="copy-code">Copy</button>
+            <button class="copy-code" type="button">Copy</button>
           </div>
 
-          <pre><code>&lt;h2 class="demo-title"&gt;
-  Hello MeowSab
-&lt;/h2&gt;
-
-&lt;button class="demo-button"&gt;
-  Button
-&lt;/button&gt;</code></pre>
+          <pre><code>&lt;div class="meowsab"&gt;
+  Lorem ipsum
+&lt;/div&gt;</code></pre>
 
         </div>
 
@@ -466,45 +385,23 @@
 
 
     <!-- Installation -->
-    <section class="page" id="installation">
+
+    <section id="installation" class="page">
 
       <div class="page-header">
-        <span class="page-label">GETTING STARTED</span>
         <h1>Installation</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="code-block">
 
-        <h2>Install MeowSab</h2>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-
-        <div class="code-block">
-
-          <div class="code-header">
-            <span>Terminal</span>
-            <button class="copy-code">Copy</button>
-          </div>
-
-          <pre><code>npm install meowsab</code></pre>
-
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
         </div>
 
-        <h2>Import</h2>
-
-        <div class="code-block">
-
-          <div class="code-header">
-            <span>JavaScript</span>
-            <button class="copy-code">Copy</button>
-          </div>
-
-          <pre><code>import MeowSab from "meowsab";
-
-const app = new MeowSab();</code></pre>
-
-        </div>
+        <pre><code>&lt;link rel="stylesheet" href="meowsab.css"&gt;
+&lt;script src="meowsab.js"&gt;&lt;/script&gt;</code></pre>
 
       </div>
 
@@ -512,36 +409,25 @@ const app = new MeowSab();</code></pre>
 
 
     <!-- Configuration -->
-    <section class="page" id="configuration">
+
+    <section id="configuration" class="page">
 
       <div class="page-header">
-        <span class="page-label">GETTING STARTED</span>
         <h1>Configuration</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="code-block">
 
-        <h2>Configuration</h2>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-
-        <div class="code-block">
-
-          <div class="code-header">
-            <span>JavaScript</span>
-            <button class="copy-code">Copy</button>
-          </div>
-
-          <pre><code>const config = {
-  theme: "dark",
-  color: "purple",
-  responsive: true
-};
-
-export default config;</code></pre>
-
+        <div class="code-header">
+          <span>JS</span>
+          <button class="copy-code" type="button">Copy</button>
         </div>
+
+        <pre><code>const meowsab = {
+  theme: "dark",
+  responsive: true
+};</code></pre>
 
       </div>
 
@@ -549,39 +435,36 @@ export default config;</code></pre>
 
 
     <!-- Colors -->
-    <section class="page" id="colors">
+
+    <section id="colors" class="page">
 
       <div class="page-header">
-        <span class="page-label">FOUNDATION</span>
         <h1>Colors</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="preview">
 
-        <div class="color-demo">
+        <div class="color-box">Primary</div>
+        <div class="color-box">Secondary</div>
+        <div class="color-box">Dark</div>
 
-          <div class="color-box purple"></div>
-          <div class="color-box dark"></div>
-          <div class="color-box light"></div>
+      </div>
 
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>CSS</span>
+          <button class="copy-code" type="button">Copy</button>
         </div>
 
-        <div class="code-block">
+        <pre><code>.ms-primary {
+  color: var(--primary);
+}
 
-          <div class="code-header">
-            <span>CSS</span>
-            <button class="copy-code">Copy</button>
-          </div>
-
-          <pre><code>:root {
-  --primary: #6d28d9;
-  --secondary: #8b5cf6;
-  --background: #08060d;
-  --text: #ffffff;
+.ms-secondary {
+  color: var(--secondary);
 }</code></pre>
-
-        </div>
 
       </div>
 
@@ -589,33 +472,32 @@ export default config;</code></pre>
 
 
     <!-- Typography -->
-    <section class="page" id="typography">
+
+    <section id="typography" class="page">
 
       <div class="page-header">
-        <span class="page-label">FOUNDATION</span>
         <h1>Typography</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block typography-demo">
+      <div class="preview">
 
         <h1>Heading One</h1>
         <h2>Heading Two</h2>
-        <h3>Heading Three</h3>
-        <p>Paragraph text goes here.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
 
-        <div class="code-block">
+      </div>
 
-          <div class="code-header">
-            <span>HTML</span>
-            <button class="copy-code">Copy</button>
-          </div>
+      <div class="code-block">
 
-          <pre><code>&lt;h1&gt;Heading One&lt;/h1&gt;
-&lt;h2&gt;Heading Two&lt;/h2&gt;
-&lt;p&gt;Paragraph text&lt;/p&gt;</code></pre>
-
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
         </div>
+
+        <pre><code>&lt;h1&gt;Heading One&lt;/h1&gt;
+&lt;h2&gt;Heading Two&lt;/h2&gt;
+&lt;p&gt;Lorem ipsum&lt;/p&gt;</code></pre>
 
       </div>
 
@@ -623,36 +505,34 @@ export default config;</code></pre>
 
 
     <!-- Spacing -->
-    <section class="page" id="spacing">
+
+    <section id="spacing" class="page">
 
       <div class="page-header">
-        <span class="page-label">FOUNDATION</span>
         <h1>Spacing</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="preview">
 
-        <div class="spacing-demo">
-          <div>8px</div>
-          <div>16px</div>
-          <div>24px</div>
-          <div>32px</div>
+        <div class="spacing-demo">Spacing</div>
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>CSS</span>
+          <button class="copy-code" type="button">Copy</button>
         </div>
 
-        <div class="code-block">
+        <pre><code>.ms-p-4 {
+  padding: 1rem;
+}
 
-          <div class="code-header">
-            <span>CSS</span>
-            <button class="copy-code">Copy</button>
-          </div>
-
-          <pre><code>.box {
-  padding: 24px;
-  margin: 16px;
+.ms-m-4 {
+  margin: 1rem;
 }</code></pre>
-
-        </div>
 
       </div>
 
@@ -660,37 +540,33 @@ export default config;</code></pre>
 
 
     <!-- Layout -->
-    <section class="page" id="layout">
+
+    <section id="layout" class="page">
 
       <div class="page-header">
-        <span class="page-label">FOUNDATION</span>
         <h1>Layout</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="preview layout-demo">
 
-        <div class="layout-demo">
-          <div></div>
-          <div></div>
-          <div></div>
+        <div>One</div>
+        <div>Two</div>
+        <div>Three</div>
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>CSS</span>
+          <button class="copy-code" type="button">Copy</button>
         </div>
 
-        <div class="code-block">
-
-          <div class="code-header">
-            <span>CSS</span>
-            <button class="copy-code">Copy</button>
-          </div>
-
-          <pre><code>.layout {
-  display: grid;
-  grid-template-columns:
-    repeat(3, 1fr);
-  gap: 16px;
+        <pre><code>.container {
+  max-width: 1050px;
+  margin: auto;
 }</code></pre>
-
-        </div>
 
       </div>
 
@@ -698,36 +574,26 @@ export default config;</code></pre>
 
 
     <!-- Breakpoints -->
-    <section class="page" id="breakpoints">
+
+    <section id="breakpoints" class="page">
 
       <div class="page-header">
-        <span class="page-label">FOUNDATION</span>
         <h1>Breakpoints</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="code-block">
 
-        <div class="code-block">
+        <div class="code-header">
+          <span>CSS</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
 
-          <div class="code-header">
-            <span>CSS</span>
-            <button class="copy-code">Copy</button>
-          </div>
-
-          <pre><code>@media (max-width: 900px) {
+        <pre><code>@media (max-width: 768px) {
   .container {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 12px;
+    width: 100%;
   }
 }</code></pre>
-
-        </div>
 
       </div>
 
@@ -735,47 +601,44 @@ export default config;</code></pre>
 
 
     <!-- Buttons -->
-    <section class="page" id="buttons">
+
+    <section id="buttons" class="page">
 
       <div class="page-header">
-        <span class="page-label">COMPONENT</span>
         <h1>Buttons</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="preview">
 
-        <h2>Preview</h2>
+        <button class="ms-btn ms-primary" type="button">
+          Primary
+        </button>
 
-        <div class="component-preview">
+        <button class="ms-btn ms-secondary" type="button">
+          Secondary
+        </button>
 
-          <button class="ms-btn ms-primary">Primary</button>
-          <button class="ms-btn ms-secondary">Secondary</button>
-          <button class="ms-btn ms-outline">Outline</button>
-          <button class="ms-btn ms-danger">Danger</button>
+        <button class="ms-btn ms-danger" type="button">
+          Danger
+        </button>
 
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
         </div>
 
-        <div class="code-block">
-
-          <div class="code-header">
-            <span>HTML</span>
-            <button class="copy-code">Copy</button>
-          </div>
-
-          <pre><code>&lt;button class="ms-btn ms-primary"&gt;
+        <pre><code>&lt;button class="ms-btn ms-primary"&gt;
   Primary
 &lt;/button&gt;
 
 &lt;button class="ms-btn ms-secondary"&gt;
   Secondary
-&lt;/button&gt;
-
-&lt;button class="ms-btn ms-outline"&gt;
-  Outline
 &lt;/button&gt;</code></pre>
-
-        </div>
 
       </div>
 
@@ -783,44 +646,40 @@ export default config;</code></pre>
 
 
     <!-- Cards -->
-    <section class="page" id="cards">
+
+    <section id="cards" class="page">
 
       <div class="page-header">
-        <span class="page-label">COMPONENT</span>
         <h1>Cards</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
       </div>
 
-      <div class="content-block">
+      <div class="preview">
 
-        <div class="component-preview">
+        <div class="ms-card">
 
-          <div class="ms-card">
+          <h3>MeowSab Card</h3>
 
-            <div class="ms-card-icon">✦</div>
+          <p>
+            Lorem ipsum dolor sit amet.
+          </p>
 
-            <h3>MeowSab Card</h3>
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur.
-            </p>
-
-            <button class="ms-btn ms-primary">
-              Explore
-            </button>
-
-          </div>
+          <button class="ms-btn ms-primary" type="button">
+            Explore
+          </button>
 
         </div>
 
-        <div class="code-block">
+      </div>
 
-          <div class="code-header">
-            <span>HTML</span>
-            <button class="copy-code">Copy</button>
-          </div>
+      <div class="code-block">
 
-          <pre><code>&lt;div class="ms-card"&gt;
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
+
+        <pre><code>&lt;div class="ms-card"&gt;
 
   &lt;h3&gt;MeowSab Card&lt;/h3&gt;
 
@@ -830,4 +689,1011 @@ export default config;</code></pre>
 
   &lt;button class="ms-btn ms-primary"&gt;
     Explore
-  &l
+  &lt;/button&gt;
+
+&lt;/div&gt;</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- Inputs -->
+
+    <section id="inputs" class="page">
+
+      <div class="page-header">
+        <h1>Inputs</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="preview">
+
+        <input class="ms-input" type="text" placeholder="Type something...">
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
+
+        <pre><code>&lt;input class="ms-input"
+type="text"
+placeholder="Type something..."&gt;</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- Select -->
+
+    <section id="select" class="page">
+
+      <div class="page-header">
+        <h1>Select</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="preview">
+
+        <select class="ms-input">
+
+          <option>Option One</option>
+          <option>Option Two</option>
+          <option>Option Three</option>
+
+        </select>
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
+
+        <pre><code>&lt;select class="ms-input"&gt;
+  &lt;option&gt;Option One&lt;/option&gt;
+  &lt;option&gt;Option Two&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- Checkbox -->
+
+    <section id="checkbox" class="page">
+
+      <div class="page-header">
+        <h1>Checkbox</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="preview">
+
+        <label>
+          <input type="checkbox">
+          Check me
+        </label>
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
+
+        <pre><code>&lt;label&gt;
+  &lt;input type="checkbox"&gt;
+  Check me
+&lt;/label&gt;</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- Radio -->
+
+    <section id="radio" class="page">
+
+      <div class="page-header">
+        <h1>Radio</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="preview">
+
+        <label>
+          <input type="radio" name="demo-radio" checked>
+          Option One
+        </label>
+
+        <label>
+          <input type="radio" name="demo-radio">
+          Option Two
+        </label>
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
+
+        <pre><code>&lt;input type="radio" name="demo"&gt;</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- Badge -->
+
+    <section id="badge" class="page">
+
+      <div class="page-header">
+        <h1>Badge</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="preview">
+
+        <span class="badge">New</span>
+        <span class="badge">Meow</span>
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
+
+        <pre><code>&lt;span class="badge"&gt;
+  New
+&lt;/span&gt;</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- Alerts -->
+
+    <section id="alerts" class="page">
+
+      <div class="page-header">
+        <h1>Alerts</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="preview">
+
+        <div class="alert">
+          Lorem ipsum dolor sit amet.
+        </div>
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
+
+        <pre><code>&lt;div class="alert"&gt;
+  Lorem ipsum dolor sit amet.
+&lt;/div&gt;</code></pre>
+
+      </div>
+
+    </section>
+
+
+    <!-- Modal -->
+
+    <section id="modal" class="page">
+
+      <div class="page-header">
+        <h1>Modal</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="preview">
+
+        <button id="openDemoModal" class="ms-btn ms-primary" type="button">
+          Open Modal
+        </button>
+
+      </div>
+
+      <div class="demo-modal" id="demoModal">
+
+        <div class="modal-content">
+
+          <button id="closeDemoModal" class="modal-close" type="button">
+            ×
+          </button>
+
+          <h2>MeowSab Modal</h2>
+
+          <p>Lorem ipsum dolor sit amet.</p>
+
+        </div>
+
+      </div>
+
+      <div class="code-block">
+
+        <div class="code-header">
+          <span>HTML</span>
+          <button class="copy-code" type="button">Copy</button>
+        </div>
+
+        <pre><code>&lt;button&gt;Open Modal&lt;/button&gt;</code></pre>
+
+      </div>
+
+    </section>
+
+
+  <!-- Dropdown -->
+
+<section id="dropdown" class="page">
+
+  <div class="page-header">
+    <h1>Dropdown</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <div class="demo-dropdown">
+
+      <button id="dropdownButton" class="ms-btn ms-primary" type="button">
+        Dropdown
+      </button>
+
+      <div id="dropdownMenu" class="dropdown-menu">
+
+        <button type="button">Option One</button>
+        <button type="button">Option Two</button>
+        <button type="button">Option Three</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>HTML</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>&lt;button class="ms-btn ms-primary"&gt;
+  Dropdown
+&lt;/button&gt;
+
+&lt;div class="dropdown-menu"&gt;
+  &lt;button&gt;Option One&lt;/button&gt;
+  &lt;button&gt;Option Two&lt;/button&gt;
+  &lt;button&gt;Option Three&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Tabs -->
+
+<section id="tabs" class="page">
+
+  <div class="page-header">
+    <h1>Tabs</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <div class="tabs-demo">
+
+      <button class="tab-btn active" data-tab="tab1" type="button">
+        Tab One
+      </button>
+
+      <button class="tab-btn" data-tab="tab2" type="button">
+        Tab Two
+      </button>
+
+      <div id="tab1" class="tab-content active">
+        Lorem ipsum dolor sit amet.
+      </div>
+
+      <div id="tab2" class="tab-content">
+        Lorem ipsum dolor sit amet.
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>HTML</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>&lt;button class="tab-btn"&gt;
+  Tab One
+&lt;/button&gt;
+
+&lt;button class="tab-btn"&gt;
+  Tab Two
+&lt;/button&gt;</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Navbar -->
+
+<section id="navbar" class="page">
+
+  <div class="page-header">
+    <h1>Navbar</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <div class="demo-navbar">
+
+      <strong>MeowSab</strong>
+
+      <div>
+        <button type="button">Home</button>
+        <button type="button">Docs</button>
+        <button type="button">About</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>HTML</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>&lt;nav class="ms-navbar"&gt;
+  &lt;strong&gt;MeowSab&lt;/strong&gt;
+
+  &lt;div&gt;
+    &lt;button&gt;Home&lt;/button&gt;
+    &lt;button&gt;Docs&lt;/button&gt;
+    &lt;button&gt;About&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Sidebar Component -->
+
+<section id="sidebar-component" class="page">
+
+  <div class="page-header">
+    <h1>Sidebar</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <button
+      class="ms-btn ms-primary"
+      id="demoSidebarButton"
+      type="button">
+      Open Sidebar
+    </button>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>HTML</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>&lt;aside class="ms-sidebar"&gt;
+  Sidebar Content
+&lt;/aside&gt;</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Flex -->
+
+<section id="flex" class="page">
+
+  <div class="page-header">
+    <h1>Flex</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview flex-demo">
+
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>.flex {
+  display: flex;
+  gap: 1rem;
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Grid -->
+
+<section id="grid" class="page">
+
+  <div class="page-header">
+    <h1>Grid</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview grid-demo">
+
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Position -->
+
+<section id="position" class="page">
+
+  <div class="page-header">
+    <h1>Position</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <div class="position-demo">
+      Position
+    </div>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>.element {
+  position: relative;
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Display -->
+
+<section id="display" class="page">
+
+  <div class="page-header">
+    <h1>Display</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <div class="display-demo">
+      Block
+    </div>
+
+    <span>
+      Inline
+    </span>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Shadows -->
+
+<section id="shadows" class="page">
+
+  <div class="page-header">
+    <h1>Shadows</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <div class="shadow-demo">
+      Shadow
+    </div>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>.shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Borders -->
+
+<section id="borders" class="page">
+
+  <div class="page-header">
+    <h1>Borders</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <div class="border-demo">
+      Border
+    </div>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>.border {
+  border: 1px solid;
+  border-radius: 10px;
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Effects -->
+
+<section id="effects" class="page">
+
+  <div class="page-header">
+    <h1>Effects</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <button class="effect-demo" type="button">
+      Hover Me
+    </button>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>.effect:hover {
+  transform: translateY(-3px);
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Responsive -->
+
+<section id="responsive" class="page">
+
+  <div class="page-header">
+    <h1>Responsive</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview responsive-demo">
+    Resize the browser window.
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>@media (max-width: 768px) {
+  .element {
+    width: 100%;
+  }
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Dark Mode -->
+
+<section id="dark-mode" class="page">
+
+  <div class="page-header">
+    <h1>Dark Mode</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <button
+      class="ms-btn ms-primary"
+      id="darkModeDemo"
+      type="button">
+      Toggle Theme
+    </button>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>JS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>document.body.classList.toggle("light");</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- RTL -->
+
+<section id="rtl" class="page">
+
+  <div class="page-header">
+    <h1>RTL</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <button
+      class="ms-btn ms-primary"
+      id="rtlDemo"
+      type="button">
+      Toggle RTL
+    </button>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>HTML</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>&lt;html dir="rtl"&gt;</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Customization -->
+
+<section id="customization" class="page">
+
+  <div class="page-header">
+    <h1>Customization</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <button class="ms-btn ms-primary" type="button">
+      Custom Button
+    </button>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>CSS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>:root {
+  --primary: #8b5cf6;
+}</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Plugins -->
+
+<section id="plugins" class="page">
+
+  <div class="page-header">
+    <h1>Plugins</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <div class="preview">
+
+    <button class="ms-btn ms-primary" type="button">
+      Plugin Demo
+    </button>
+
+  </div>
+
+  <div class="code-block">
+
+    <div class="code-header">
+      <span>JS</span>
+
+      <button class="copy-code" type="button">
+        Copy
+      </button>
+    </div>
+
+    <pre><code>MeowSab.use(plugin);</code></pre>
+
+  </div>
+
+</section>
+
+
+<!-- Playground -->
+
+<section id="playground" class="page">
+
+  <div class="page-header">
+
+    <h1>Playground</h1>
+
+    <p>
+      Lorem ipsum dolor sit amet.
+    </p>
+
+  </div>
+
+  <div class="playground">
+
+    <textarea
+      id="playgroundCode"
+      placeholder="Write HTML here..."
+    >&lt;div class="ms-card"&gt;
+  &lt;h2&gt;MeowSab&lt;/h2&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
+&lt;/div&gt;</textarea>
+
+    <button
+      id="runPlayground"
+      class="primary-btn"
+      type="button">
+      Run
+    </button>
+
+    <div
+      class="playground-preview"
+      id="playgroundPreview">
+    </div>
+
+  </div>
+
+</section>
+
+    <!-- Search -->
+
+<div id="searchOverlay" class="search-overlay">
+
+  <div class="search-box">
+
+    <button id="closeSearch" type="button">
+      ×
+    </button>
+
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Search MeowSab..."
+    >
+
+    <div id="searchResults"></div>
+
+  </div>
+
+</div>
+
+
+<!-- Language -->
+
+<div id="languageMenu" class="language-menu">
+
+  <button type="button" data-language="en">
+    English
+  </button>
+
+  <button type="button" data-language="ar">
+    العربية
+  </button>
+
+</div>
+
+
+<!-- Profile -->
+
+<div id="profileMenu" class="profile-menu">
+
+  <div class="profile-avatar">
+    M
+  </div>
+
+  <h3>My Profile</h3>
+
+  <p>
+    Lorem ipsum dolor sit amet.
+  </p>
+
+  <button type="button">
+    Settings
+  </button>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```0
