@@ -2,436 +2,1129 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MeowSab</title>
+  <title>MeowSab Framework</title>
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Nav -->
+  <!-- Navbar -->
 
-    <header class="navbar">
+  <header class="navbar">
 
-        <!-- Logo -->
-        <a href="#" class="logo" data-page="home">
-            <img src="logo.png" alt="MeowSab Logo">
-            <span>MeowSab</span>
-        </a>
+    <a href="#" class="logo" data-page="home">
+      <img src="logo.png" alt="MeowSab Logo">
+      <span>MeowSab</span>
+    </a>
 
+    <nav class="nav-links">
+      <a href="#" data-page="docs">Docs</a>
+      <a href="#" data-page="components">Components</a>
+      <a href="#" data-page="utilities">Utilities</a>
+      <a href="#" data-page="playground">Playground</a>
+    </nav>
 
-        <!-- Desktop Navigation -->
-        <nav class="nav-links">
+    <div class="nav-actions">
 
-            <a href="#" data-page="docs">
-                Docs
-            </a>
+      <button class="nav-btn search-btn" id="searchButton" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </button>
 
-            <a href="#" data-page="components">
-                Components
-            </a>
+      <button class="nav-btn language-btn" id="languageButton" aria-label="Language">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M3 12h18"></path>
+          <path d="M12 3a14 14 0 0 1 0 18"></path>
+          <path d="M12 3a14 14 0 0 0 0 18"></path>
+        </svg>
+      </button>
 
-            <a href="#" data-page="utilities">
-                Utilities
-            </a>
+      <button class="nav-btn theme-btn" id="themeButton" aria-label="Theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3A7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
 
-            <a href="#" data-page="playground">
-                Playground
-            </a>
+      <button class="profile-btn" id="profileButton">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M4 21a8 8 0 0 1 16 0"></path>
+        </svg>
 
-        </nav>
+        <span>My Profile</span>
+      </button>
 
+      <button class="nav-btn menu-btn" id="menuButton" aria-label="Open Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16"></path>
+          <path d="M4 12h16"></path>
+          <path d="M4 18h16"></path>
+        </svg>
+      </button>
 
-        <!-- Navbar Actions -->
-        <div class="nav-actions">
+    </div>
 
-            <!-- Search -->
-            <button
-                class="nav-btn search-btn"
-                aria-label="Search"
-                id="searchButton">
-
-                <svg viewBox="0 0 24 24">
-                    <circle cx="11" cy="11" r="7"></circle>
-                    <path d="m20 20-4-4"></path>
-                </svg>
-
-            </button>
-
-
-            <!-- Language -->
-            <button
-                class="nav-btn language-btn"
-                aria-label="Change Language"
-                id="languageButton">
-
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <path d="M3 12h18"></path>
-                    <path d="M12 3c3 3 3 15 0 18"></path>
-                    <path d="M12 3c-3 3-3 15 0 18"></path>
-                </svg>
-
-            </button>
+  </header>
 
 
-            <!-- Theme -->
-            <button
-                class="nav-btn theme-btn"
-                aria-label="Change Theme"
-                id="themeButton">
+  <!-- Layout -->
 
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <path d="M12 2v2"></path>
-                    <path d="M12 20v2"></path>
-                    <path d="m4.93 4.93 1.41 1.41"></path>
-                    <path d="m17.66 17.66 1.41 1.41"></path>
-                    <path d="M2 12h2"></path>
-                    <path d="M20 12h2"></path>
-                    <path d="m6.34 17.66-1.41 1.41"></path>
-                    <path d="m19.07 4.93-1.41 1.41"></path>
-                </svg>
-
-            </button>
+  <div class="layout">
 
 
-            <!-- My Profile -->
-            <button
-                class="profile-btn"
-                id="profileButton">
+    <!-- Sidebar -->
 
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="8" r="4"></circle>
-                    <path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"></path>
-                </svg>
+    <aside class="sidebar" id="sidebar">
 
-                <span>My Profile</span>
+      <div class="sidebar-header">
+        <span>MeowSab</span>
 
-            </button>
+        <button class="close-sidebar" id="closeSidebar">
+          ×
+        </button>
+      </div>
 
 
-            <!-- Mobile Menu -->
-            <button
-                class="nav-btn menu-btn"
-                id="menuButton"
-                aria-label="Open Menu">
+      <nav class="sidebar-nav">
 
-                <svg viewBox="0 0 24 24">
-                    <path d="M4 6h16"></path>
-                    <path d="M4 12h16"></path>
-                    <path d="M4 18h16"></path>
-                </svg>
 
-            </button>
+        <!-- Getting Started -->
+
+        <div class="sidebar-group">
+
+          <p class="sidebar-title">
+            Getting Started
+          </p>
+
+          <a href="#" data-page="introduction">
+            Introduction
+          </a>
+
+          <a href="#" data-page="installation">
+            Installation
+          </a>
+
+          <a href="#" data-page="configuration">
+            Configuration
+          </a>
 
         </div>
 
-    </header>
+
+        <!-- Foundation -->
+
+        <div class="sidebar-group">
+
+          <p class="sidebar-title">
+            Foundation
+          </p>
+
+          <a href="#" data-page="colors">
+            Colors
+          </a>
+
+          <a href="#" data-page="typography">
+            Typography
+          </a>
+
+          <a href="#" data-page="spacing">
+            Spacing
+          </a>
+
+          <a href="#" data-page="layout">
+            Layout
+          </a>
+
+          <a href="#" data-page="breakpoints">
+            Breakpoints
+          </a>
+
+        </div>
 
 
+        <!-- Components -->
 
-    <!-- Layout -->
+        <div class="sidebar-group">
 
-    <div class="layout">
+          <p class="sidebar-title">
+            Components
+          </p>
+
+          <a href="#" data-page="buttons">
+            Buttons
+          </a>
+
+          <a href="#" data-page="cards">
+            Cards
+          </a>
+
+          <a href="#" data-page="inputs">
+            Inputs
+          </a>
+
+          <a href="#" data-page="select">
+            Select
+          </a>
+
+          <a href="#" data-page="checkbox">
+            Checkbox
+          </a>
+
+          <a href="#" data-page="radio">
+            Radio
+          </a>
+
+          <a href="#" data-page="badge">
+            Badge
+          </a>
+
+          <a href="#" data-page="alerts">
+            Alerts
+          </a>
+
+          <a href="#" data-page="modal">
+            Modal
+          </a>
+
+          <a href="#" data-page="dropdown">
+            Dropdown
+          </a>
+
+          <a href="#" data-page="tabs">
+            Tabs
+          </a>
+
+          <a href="#" data-page="navbar">
+            Navbar
+          </a>
+
+          <a href="#" data-page="sidebar-component">
+            Sidebar
+          </a>
+
+        </div>
 
 
-        <!-- sidebar -->
+        <!-- Utilities -->
 
-        <aside class="sidebar" id="sidebar">
+        <div class="sidebar-group">
 
-            <div class="sidebar-header">
+          <p class="sidebar-title">
+            Utilities
+          </p>
 
-                <span>MeowSab</span>
+          <a href="#" data-page="flex">
+            Flex
+          </a>
 
-                <button
-                    class="close-sidebar"
-                    id="closeSidebar">
-                    ×
-                </button>
+          <a href="#" data-page="grid">
+            Grid
+          </a>
+
+          <a href="#" data-page="position">
+            Position
+          </a>
+
+          <a href="#" data-page="display">
+            Display
+          </a>
+
+          <a href="#" data-page="shadows">
+            Shadows
+          </a>
+
+          <a href="#" data-page="borders">
+            Borders
+          </a>
+
+          <a href="#" data-page="effects">
+            Effects
+          </a>
+
+          <a href="#" data-page="responsive">
+            Responsive
+          </a>
+
+        </div>
+
+
+        <!-- Advanced -->
+
+        <div class="sidebar-group">
+
+          <p class="sidebar-title">
+            Advanced
+          </p>
+
+          <a href="#" data-page="dark-mode">
+            Dark Mode
+          </a>
+
+          <a href="#" data-page="rtl">
+            RTL
+          </a>
+
+          <a href="#" data-page="customization">
+            Customization
+          </a>
+
+          <a href="#" data-page="plugins">
+            Plugins
+          </a>
+
+        </div>
+
+
+        <!-- Playground -->
+
+        <div class="sidebar-group">
+
+          <p class="sidebar-title">
+            Playground
+          </p>
+
+          <a href="#" data-page="playground">
+            Playground
+          </a>
+
+        </div>
+
+      </nav>
+
+    </aside>
+
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+
+      <!-- Home -->
+
+      <section class="page active" id="home">
+
+        <div class="hero">
+
+          <div class="hero-logo">
+            <img src="logo.png" alt="MeowSab">
+          </div>
+
+          <p class="eyebrow">
+            MEOWSAB FRAMEWORK
+          </p>
+
+          <h1>
+            Build something
+            <span>beautiful.</span>
+          </h1>
+
+          <p class="hero-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer posuere erat a ante.
+          </p>
+
+          <div class="hero-buttons">
+
+            <button
+              class="primary-btn"
+              data-page="introduction">
+              Get Started
+            </button>
+
+            <button
+              class="secondary-btn"
+              data-page="components">
+              Explore Components
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Docs -->
+
+      <section class="page" id="docs">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            DOCUMENTATION
+          </span>
+
+          <h1>
+            Docs
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- Components -->
+
+      <section class="page" id="components">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            UI
+          </span>
+
+          <h1>
+            Components
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+
+        <!-- Button Example -->
+
+        <div class="example">
+
+          <div class="example-info">
+
+            <h2>
+              Buttons
+            </h2>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+
+          </div>
+
+          <div class="code-preview">
+
+<pre><code>&lt;button class="ms-button"&gt;
+    Button
+&lt;/button&gt;</code></pre>
+
+          </div>
+
+          <div class="preview">
+
+            <button class="demo-button">
+              Button
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Utilities -->
+
+      <section class="page" id="utilities">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            UTILITIES
+          </span>
+
+          <h1>
+            Utilities
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- Playground -->
+
+      <section class="page" id="playground">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            PLAYGROUND
+          </span>
+
+          <h1>
+            Playground
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+
+        <div class="playground">
+
+          <div class="editor">
+
+            <div class="editor-header">
+              HTML
+            </div>
+
+            <textarea><button class="demo-button">
+    Hello MeowSab
+</button></textarea>
+
+          </div>
+
+
+          <div class="playground-preview">
+
+            <div class="editor-header">
+              Preview
+            </div>
+
+            <div class="preview-content">
+
+              <button class="demo-button">
+                Hello MeowSab
+              </button>
 
             </div>
 
+          </div>
 
-            <nav class="sidebar-nav">
+        </div>
 
+      </section>
 
-                <!-- Getting Started -->
 
-                <div class="sidebar-group">
+      <!-- Introduction -->
 
-                    <p class="sidebar-title">
-                        Getting Started
-                    </p>
+      <section class="page" id="introduction">
 
-                    <a href="#"
-                       data-page="introduction">
-                        Introduction
-                    </a>
+        <div class="page-header">
 
-                    <a href="#"
-                       data-page="installation">
-                        Installation
-                    </a>
+          <span class="page-label">
+            GETTING STARTED
+          </span>
 
-                </div>
+          <h1>
+            Introduction
+          </h1>
 
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
 
-                <!-- Foundation -->
+        </div>
 
-                <div class="sidebar-group">
+        <div class="example">
 
-                    <p class="sidebar-title">
-                        Foundation
-                    </p>
+          <div class="example-info">
 
-                    <a href="#"
-                       data-page="colors">
-                        Colors
-                    </a>
+            <h2>
+              Welcome to MeowSab
+            </h2>
 
-                    <a href="#"
-                       data-page="typography">
-                        Typography
-                    </a>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
 
-                    <a href="#"
-                       data-page="spacing">
-                        Spacing
-                    </a>
+          </div>
 
-                    <a href="#"
-                       data-page="layout">
-                        Layout
-                    </a>
+        </div>
 
-                </div>
+      </section>
 
 
-                <!-- Components -->
+      <!-- Installation -->
 
-                <div class="sidebar-group">
+      <section class="page" id="installation">
 
-                    <p class="sidebar-title">
-                        Components
-                    </p>
+        <div class="page-header">
 
-                    <a href="#"
-                       data-page="buttons">
-                        Buttons
-                    </a>
+          <span class="page-label">
+            GETTING STARTED
+          </span>
 
-                    <a href="#"
-                       data-page="cards">
-                        Cards
-                    </a>
+          <h1>
+            Installation
+          </h1>
 
-                    <a href="#"
-                       data-page="inputs">
-                        Inputs
-                    </a>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
 
-                    <a href="#"
-                       data-page="alerts">
-                        Alerts
-                    </a>
+        </div>
 
-                    <a href="#"
-                       data-page="modal">
-                        Modal
-                    </a>
+        <div class="example">
 
-                </div>
+          <div class="example-info">
 
+            <h2>
+              Installation
+            </h2>
 
-                <!-- Utilities -->
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
 
-                <div class="sidebar-group">
+          </div>
 
-                    <p class="sidebar-title">
-                        Utilities
-                    </p>
+          <div class="code-preview">
 
-                    <a href="#"
-                       data-page="flex">
-                        Flex
-                    </a>
+<pre><code>npm install meowsab</code></pre>
 
-                    <a href="#"
-                       data-page="grid">
-                        Grid
-                    </a>
+          </div>
 
-                    <a href="#"
-                       data-page="position">
-                        Position
-                    </a>
+        </div>
 
-                    <a href="#"
-                       data-page="effects">
-                        Effects
-                    </a>
+      </section>
 
-                </div>
 
+      <!-- Configuration -->
 
-            </nav>
+      <section class="page" id="configuration">
 
-        </aside>
+        <div class="page-header">
 
+          <span class="page-label">
+            GETTING STARTED
+          </span>
 
+          <h1>
+            Configuration
+          </h1>
 
-        <!-- Main Content -->
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
 
-        <main class="main-content">
+        </div>
 
+      </section>
 
-            <!-- Home -->
 
-            <section
-                class="page active"
-                id="home">
+      <!-- Colors -->
 
-                <div class="hero">
+      <section class="page" id="colors">
 
-                    <div class="hero-logo">
-                        <img src="logo.png" alt="">
-                    </div>
+        <div class="page-header">
 
-                    <p class="eyebrow">
-                        MEOWSAB FRAMEWORK
-                    </p>
+          <span class="page-label">
+            FOUNDATION
+          </span>
 
-                    <h1>
-                        Build something
-                        <span>beautiful.</span>
-                    </h1>
+          <h1>
+            Colors
+          </h1>
 
-                    <p class="hero-description">
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit.
-                        Integer posuere erat a ante.
-                    </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
 
-                    <div class="hero-buttons">
+        </div>
 
-                        <button
-                            class="primary-btn"
-                            data-page="introduction">
-                            Get Started
-                        </button>
+        <div class="example">
 
-                        <button
-                            class="secondary-btn"
-                            data-page="components">
-                            Explore Components
-                        </button>
+          <div class="example-info">
 
-                    </div>
+            <h2>
+              Color System
+            </h2>
 
-                </div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
 
-            </section>
+          </div>
 
+          <div class="preview">
 
+            <button class="demo-button">
+              Purple
+            </button>
 
-            <!-- Docs -->
+          </div>
 
-            <section
-                class="page"
-                id="docs">
+        </div>
 
-                <div class="page-header">
+      </section>
 
-                    <span class="page-label">
-                        DOCUMENTATION
-                    </span>
 
-                    <h1>Docs</h1>
+      <!-- Typography -->
 
-                    <p>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit.
-                    </p>
+      <section class="page" id="typography">
 
-                </div>
+        <div class="page-header">
 
-            </section>
+          <span class="page-label">
+            FOUNDATION
+          </span>
 
+          <h1>
+            Typography
+          </h1>
 
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
 
-            <!-- Components -->
+        </div>
 
-            <section
-                class="page"
-                id="components">
+      </section>
 
-                <div class="page-header">
 
-                    <span class="page-label">
-                        UI
-                    </span>
+      <!-- Spacing -->
 
-                    <h1>Components</h1>
+      <section class="page" id="spacing">
 
-                    <p>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit.
-                    </p>
+        <div class="page-header">
 
-                </div>
+          <span class="page-label">
+            FOUNDATION
+          </span>
 
+          <h1>
+            Spacing
+          </h1>
 
-                <!-- Example -->
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
 
-                <div class="example">
+        </div>
 
-                    <div class="example-info">
+      </section>
 
-                        <h2>
-                            Buttons
-                        </h2>
 
-                        <p>
-                            Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit.
-                        </p>
+      <!-- Layout -->
 
-                    </div>
+      <section class="page" id="layout">
 
+        <div class="page-header">
 
-                    <div class="code-preview">
+          <span class="page-label">
+            FOUNDATION
+          </span>
 
-                        <pre><code>
-&lt;button class="ms-button"&gt;
-    Button
-&lt;/button&gt;
-                        </code></pre>
+          <h1>
+            Layout
+          </h1>
 
-                    </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
 
+        </div>
 
-                    <div class="preview">
+      </section>
 
-                        <button class="demo-button">
-                            Button
-                        </button>
 
-                    </div>
+      <!-- Breakpoints -->
 
-                </div>
+      <section class="page" id="breakpoints">
 
-            </section>
+        <div class="page-header">
 
+          <span class="page-label">
+            FOUNDATION
+          </span>
 
+          <h1>
+            Breakpoints
+          </h1>
 
-            <!-- Utilities -->
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
 
-            <section
-                class="page"
+        </div>
+
+      </section>
+
+
+      <!-- Buttons -->
+
+      <section class="page" id="buttons">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Buttons
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+        <div class="example">
+
+          <div class="example-info">
+
+            <h2>
+              Basic Button
+            </h2>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+
+          </div>
+
+          <div class="code-preview">
+
+<pre><code>&lt;button class="ms-button"&gt;
+    Click me
+&lt;/button&gt;</code></pre>
+
+          </div>
+
+          <div class="preview">
+
+            <button class="demo-button">
+              Click me
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Cards -->
+
+      <section class="page" id="cards">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Cards
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+        <div class="example">
+
+          <div class="example-info">
+
+            <h2>
+              Basic Card
+            </h2>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+
+          </div>
+
+          <div class="preview">
+
+            <div>
+              <h3>MeowSab</h3>
+
+              <p>
+                Lorem ipsum dolor sit amet.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Inputs -->
+
+      <section class="page" id="inputs">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Inputs
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+        <div class="example">
+
+          <div class="example-info">
+
+            <h2>
+              Text Input
+            </h2>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+
+          </div>
+
+          <div class="code-preview">
+
+<pre><code>&lt;input class="ms-input"&gt;</code></pre>
+
+          </div>
+
+          <div class="preview">
+
+            <input
+              type="text"
+              placeholder="Type something..."
+              style="
+                padding:12px;
+                border-radius:8px;
+                border:1px solid var(--border);
+                background:var(--code-bg);
+                color:var(--text);
+                outline:none;
+              ">
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Select -->
+
+      <section class="page" id="select">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Select
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- Checkbox -->
+
+      <section class="page" id="checkbox">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Checkbox
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+        <div class="preview">
+
+          <label>
+            <input type="checkbox">
+            Checkbox
+          </label>
+
+        </div>
+
+      </section>
+
+
+      <!-- Radio -->
+
+      <section class="page" id="radio">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Radio
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+        <div class="preview">
+
+          <label>
+            <input type="radio" name="demo-radio">
+            Option
+          </label>
+
+        </div>
+
+      </section>
+
+
+      <!-- Badge -->
+
+      <section class="page" id="badge">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Badge
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+        <div class="preview">
+
+          <span>
+            Badge
+          </span>
+
+        </div>
+
+      </section>
+
+
+      <!-- Alerts -->
+
+      <section class="page" id="alerts">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Alerts
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+        <div class="example">
+
+          <div class="example-info">
+
+            <h2>
+              Alert
+            </h2>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+
+          </div>
+
+          <div class="preview">
+
+            <div>
+              Lorem ipsum dolor sit amet.
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Modal -->
+
+      <section class="page" id="modal">
+
+        <div class="page-header">
+
+          <span class="page-label">
+            COMPONENT
+          </span>
+
+          <h1>
+            Modal
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+
+        </div>
+
+        <div class="preview">
+
+          <button class="primary-btn">
+            Open Modal
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- Dropdown -->
+
+      <section class="page" id="dro         class="page"
                 id="utilities">
 
                 <div class="page-header">
