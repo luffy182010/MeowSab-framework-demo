@@ -188,6 +188,8 @@ body.light-mode .navbar {
   border-radius: 8px;
 
   transition: all var(--transition);
+
+  color: #fff;
 }
 
 .profile-btn:hover {
@@ -198,6 +200,9 @@ body.light-mode .navbar {
 .profile-btn svg {
   width: 17px;
   height: 17px;
+
+  color: #fff;
+  storke: #fff;
 }
 
 .menu-btn {
