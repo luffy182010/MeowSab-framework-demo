@@ -153,7 +153,7 @@ body.light-mode .navbar {
   align-items: center;
   justify-content: center;
 
-  color: var(--text-secondary);
+  color: #fff;
   background: transparent;
 
   border-radius: 8px;
@@ -161,15 +161,16 @@ body.light-mode .navbar {
   transition: all var(--transition);
 }
 
+.nav-btn svg {
+  color: #fff;
+  stroke: #fff;
+}
+
 .nav-btn:hover {
   color: var(--text);
   background: var(--surface-hover);
 }
 
-.nav-btn svg {
-  width: 19px;
-  height: 19px;
-}
 
 .profile-btn {
   height: 38px;
