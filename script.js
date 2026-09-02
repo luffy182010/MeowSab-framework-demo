@@ -1,81 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* Pages */
+  /* Elements */
 
   const pages = document.querySelectorAll(".page");
   const pageLinks = document.querySelectorAll("[data-page]");
-
-  function showPage(pageId, updateHash = true) {
-    const targetPage = document.getElementById(pageId);
-
-    if (!targetPage) {
-      showPage("home", false);
-      return;
-    }
-
-    pages.forEach(page => {
-      page.classList.remove("active");
-    });
-
-    targetPage.classList.add("active");
-
-    document.querySelectorAll(".sidebar-link").forEach(link => {
-      link.classList.toggle(
-        "active",
-        link.dataset.page === pageId
-      );
-    });
-
-    if (updateHash) {
-      history.replaceState(null, "", `#${pageId}`);
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-    closeSidebar();
-    closeLanguageMenu();
-    closeProfileMenu();
-  }
-
-  pageLinks.forEach(link => {
-    link.addEventListener("click", event => {
-      event.preventDefault();
-
-      const page = link.dataset.page;
-
-      if (page) {
-        showPage(page);
-      }
-    });
-  });
-
-
-  /* Hash Navigation */
-
-  function loadPageFromHash() {
-    const hash = window.location.hash.replace("#", "");
-
-    if (hash && document.getElementById(hash)) {
-      showPage(hash, false);
-    } else {
-      showPage("home", false);
-    }
-  }
-
-  window.addEventListener("hashchange", loadPageFromHash);
-
-  loadPageFromHash();
-
-
-  /* Sidebar */
 
   const sidebar = document.getElementById("sidebar");
   const menuButton = document.getElementById("menuButton");
   const closeSidebarButton = document.getElementById("closeSidebar");
   const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+  const themeButton = document.getElementById("themeButton");
+
+  const languageButton = document.getElementById("languageButton");
+  const languageMenu = document.getElementById("languageMenu");
+
+  const searchButton = document.getElementById("searchButton");
+  const searchOverlay = document.getElementById("searchOverlay");
+  const searchInput = document.getElementById("searchInput");
+  const closeSearchButton = document.getElementById("closeSearch");
+
+  const profileButton = document.getElementById("profileButton");
+  const profileMenu = document.getElementById("profileMenu");
+
+
+  /* Sidebar */
 
   function openSidebar() {
     if (!sidebar) return;
@@ -98,9 +47,89 @@ document.addEventListener("DOMContentLoaded", () => {
   sidebarOverlay?.addEventListener("click", closeSidebar);
 
 
-  /* Theme */
+  /* Menus */
 
-  const themeButton = document.getElementById("themeButton");
+  function closeLanguageMenu() {
+    languageMenu?.classList.remove("active");
+  }
+
+  function closeProfileMenu() {
+    profileMenu?.classList.remove("active");
+  }
+
+
+  /* Pages */
+
+  function showPage(pageId, updateHash = true) {
+    const targetPage = document.getElementById(pageId);
+
+    if (!targetPage) {
+      pageId = "home";
+    }
+
+    pages.forEach(page => {
+      page.classList.remove("active");
+    });
+
+    const page = document.getElementById(pageId);
+
+    if (!page) return;
+
+    page.classList.add("active");
+
+    document.querySelectorAll("[data-page]").forEach(link => {
+      link.classList.toggle(
+        "active",
+        link.dataset.page === pageId
+      );
+    });
+
+    if (updateHash) {
+      history.replaceState(null, "", `#${pageId}`);
+    }
+
+    closeSidebar();
+    closeLanguageMenu();
+    closeProfileMenu();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+  /* Page Links */
+
+  pageLinks.forEach(link => {
+    link.addEventListener("click", event => {
+      event.preventDefault();
+
+      const pageId = link.dataset.page;
+
+      if (pageId) {
+        showPage(pageId);
+      }
+    });
+  });
+
+
+  /* Hash */
+
+  function loadPage() {
+    const hash = window.location.hash.substring(1);
+
+    if (hash && document.getElementById(hash)) {
+      showPage(hash, false);
+    } else {
+      showPage("home", false);
+    }
+  }
+
+  window.addEventListener("hashchange", loadPage);
+
+
+  /* Theme */
 
   function setTheme(theme) {
     if (theme === "light") {
@@ -108,56 +137,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (themeButton) {
         themeButton.textContent = "☀️";
-        themeButton.setAttribute("aria-label", "Switch to dark mode");
       }
     } else {
       document.body.classList.remove("light-mode");
 
       if (themeButton) {
         themeButton.textContent = "🌙";
-        themeButton.setAttribute("aria-label", "Switch to light mode");
       }
     }
 
     localStorage.setItem("meowsab-theme", theme);
   }
 
-  const savedTheme = localStorage.getItem("meowsab-theme") || "dark";
+  const savedTheme =
+    localStorage.getItem("meowsab-theme") || "dark";
 
   setTheme(savedTheme);
 
   themeButton?.addEventListener("click", () => {
-    const isLight = document.body.classList.contains("light-mode");
+    const light =
+      document.body.classList.contains("light-mode");
 
-    setTheme(isLight ? "dark" : "light");
+    setTheme(light ? "dark" : "light");
   });
 
 
   /* Language */
 
-  const languageButton = document.getElementById("languageButton");
-  const languageMenu = document.getElementById("languageMenu");
-
-  function openLanguageMenu() {
-    languageMenu?.classList.add("active");
-  }
-
-  function closeLanguageMenu() {
-    languageMenu?.classList.remove("active");
-  }
-
   languageButton?.addEventListener("click", event => {
     event.stopPropagation();
 
-    if (languageMenu?.classList.contains("active")) {
-      closeLanguageMenu();
-    } else {
-      openLanguageMenu();
-    }
+    languageMenu?.classList.toggle("active");
+    closeProfileMenu();
   });
-
-
-  /* Language Switch */
 
   const translations = {
     en: {
@@ -175,45 +187,50 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  function changeLanguage(language) {
+  function setLanguage(language) {
     const translation = translations[language];
 
     if (!translation) return;
 
     document.documentElement.lang = language;
-    document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir =
+      language === "ar" ? "rtl" : "ltr";
 
-    document.querySelectorAll(".nav-links [data-page]").forEach(link => {
-      const page = link.dataset.page;
+    document.querySelectorAll(".nav-links [data-page]")
+      .forEach(link => {
 
-      if (translation[page]) {
-        link.textContent = translation[page];
-      }
-    });
+        const page = link.dataset.page;
 
-    localStorage.setItem("meowsab-language", language);
+        if (translation[page]) {
+          link.textContent = translation[page];
+        }
+      });
+
+    localStorage.setItem(
+      "meowsab-language",
+      language
+    );
 
     closeLanguageMenu();
   }
 
-  document.querySelectorAll("[data-language]").forEach(button => {
-    button.addEventListener("click", () => {
-      changeLanguage(button.dataset.language);
+  document
+    .querySelectorAll("[data-language]")
+    .forEach(button => {
+
+      button.addEventListener("click", () => {
+        setLanguage(button.dataset.language);
+      });
+
     });
-  });
 
   const savedLanguage =
     localStorage.getItem("meowsab-language") || "en";
 
-  changeLanguage(savedLanguage);
+  setLanguage(savedLanguage);
 
 
   /* Search */
-
-  const searchButton = document.getElementById("searchButton");
-  const searchOverlay = document.getElementById("searchOverlay");
-  const searchInput = document.getElementById("searchInput");
-  const closeSearchButton = document.getElementById("closeSearch");
 
   function openSearch() {
     searchOverlay?.classList.add("active");
@@ -221,6 +238,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       searchInput?.focus();
     }, 100);
+  }
+
+  function clearSearchResults() {
+    document
+      .querySelector(".search-results")
+      ?.remove();
   }
 
   function closeSearch() {
@@ -234,371 +257,300 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   searchButton?.addEventListener("click", openSearch);
-  closeSearchButton?.addEventListener("click", closeSearch);
+  closeSearchButton?.addEventListener(
+    "click",
+    closeSearch
+  );
 
 
   /* Search Data */
 
   const searchPages = [
-    {
-      id: "introduction",
-      title: "Introduction",
-      category: "Getting Started"
-    },
-    {
-      id: "installation",
-      title: "Installation",
-      category: "Getting Started"
-    },
-    {
-      id: "configuration",
-      title: "Configuration",
-      category: "Getting Started"
-    },
+    ["introduction", "Introduction", "Getting Started"],
+    ["installation", "Installation", "Getting Started"],
+    ["configuration", "Configuration", "Getting Started"],
 
-    {
-      id: "colors",
-      title: "Colors",
-      category: "Foundation"
-    },
-    {
-      id: "typography",
-      title: "Typography",
-      category: "Foundation"
-    },
-    {
-      id: "spacing",
-      title: "Spacing",
-      category: "Foundation"
-    },
-    {
-      id: "layout",
-      title: "Layout",
-      category: "Foundation"
-    },
-    {
-      id: "breakpoints",
-      title: "Breakpoints",
-      category: "Foundation"
-    },
+    ["colors", "Colors", "Foundation"],
+    ["typography", "Typography", "Foundation"],
+    ["spacing", "Spacing", "Foundation"],
+    ["layout", "Layout", "Foundation"],
+    ["breakpoints", "Breakpoints", "Foundation"],
 
-    {
-      id: "buttons",
-      title: "Buttons",
-      category: "Components"
-    },
-    {
-      id: "cards",
-      title: "Cards",
-      category: "Components"
-    },
-    {
-      id: "inputs",
-      title: "Inputs",
-      category: "Components"
-    },
-    {
-      id: "select",
-      title: "Select",
-      category: "Components"
-    },
-    {
-      id: "checkbox",
-      title: "Checkbox",
-      category: "Components"
-    },
-    {
-      id: "radio",
-      title: "Radio",
-      category: "Components"
-    },
-    {
-      id: "badge",
-      title: "Badge",
-      category: "Components"
-    },
-    {
-      id: "alerts",
-      title: "Alerts",
-      category: "Components"
-    },
-    {
-      id: "modal",
-      title: "Modal",
-      category: "Components"
-    },
-    {
-      id: "dropdown",
-      title: "Dropdown",
-      category: "Components"
-    },
-    {
-      id: "tabs",
-      title: "Tabs",
-      category: "Components"
-    },
-    {
-      id: "navbar",
-      title: "Navbar",
-      category: "Components"
-    },
-    {
-      id: "sidebar-component",
-      title: "Sidebar",
-      category: "Components"
-    },
+    ["buttons", "Buttons", "Components"],
+    ["cards", "Cards", "Components"],
+    ["inputs", "Inputs", "Components"],
+    ["select", "Select", "Components"],
+    ["checkbox", "Checkbox", "Components"],
+    ["radio", "Radio", "Components"],
+    ["badge", "Badge", "Components"],
+    ["alerts", "Alerts", "Components"],
+    ["modal", "Modal", "Components"],
+    ["dropdown", "Dropdown", "Components"],
+    ["tabs", "Tabs", "Components"],
+    ["navbar", "Navbar", "Components"],
+    ["sidebar-component", "Sidebar", "Components"],
 
-    {
-      id: "flex",
-      title: "Flex",
-      category: "Utilities"
-    },
-    {
-      id: "grid",
-      title: "Grid",
-      category: "Utilities"
-    },
-    {
-      id: "position",
-      title: "Position",
-      category: "Utilities"
-    },
-    {
-      id: "display",
-      title: "Display",
-      category: "Utilities"
-    },
-    {
-      id: "shadows",
-      title: "Shadows",
-      category: "Utilities"
-    },
-    {
-      id: "borders",
-      title: "Borders",
-      category: "Utilities"
-    },
-    {
-      id: "effects",
-      title: "Effects",
-      category: "Utilities"
-    },
-    {
-      id: "responsive",
-      title: "Responsive",
-      category: "Utilities"
-    },
+    ["flex", "Flex", "Utilities"],
+    ["grid", "Grid", "Utilities"],
+    ["position", "Position", "Utilities"],
+    ["display", "Display", "Utilities"],
+    ["shadows", "Shadows", "Utilities"],
+    ["borders", "Borders", "Utilities"],
+    ["effects", "Effects", "Utilities"],
+    ["responsive", "Responsive", "Utilities"],
 
-    {
-      id: "dark-mode",
-      title: "Dark Mode",
-      category: "Advanced"
-    },
-    {
-      id: "rtl",
-      title: "RTL",
-      category: "Advanced"
-    },
-    {
-      id: "customization",
-      title: "Customization",
-      category: "Advanced"
-    },
-    {
-      id: "plugins",
-      title: "Plugins",
-      category: "Advanced"
-    },
+    ["dark-mode", "Dark Mode", "Advanced"],
+    ["rtl", "RTL", "Advanced"],
+    ["customization", "Customization", "Advanced"],
+    ["plugins", "Plugins", "Advanced"],
 
-    {
-      id: "playground",
-      title: "Playground",
-      category: "Tools"
-    }
+    ["playground", "Playground", "Tools"]
   ];
 
-
-  function clearSearchResults() {
-    const results = document.querySelector(".search-results");
-
-    if (results) {
-      results.remove();
-    }
-  }
-
-  function showSearchResults(query) {
+  function search(query) {
     clearSearchResults();
 
     if (!query.trim()) return;
 
-    const results = document.createElement("div");
+    const box =
+      document.querySelector(".search-box");
 
-    results.className = "search-results";
+    if (!box) return;
 
-    const normalizedQuery = query.toLowerCase().trim();
+    const value = query.toLowerCase().trim();
 
-    const matches = searchPages.filter(page => {
+    const results = searchPages.filter(item => {
       return (
-        page.title.toLowerCase().includes(normalizedQuery) ||
-        page.category.toLowerCase().includes(normalizedQuery)
+        item[1].toLowerCase().includes(value) ||
+        item[2].toLowerCase().includes(value)
       );
     });
 
-    if (matches.length === 0) {
-      results.innerHTML = `
+    const container =
+      document.createElement("div");
+
+    container.className = "search-results";
+
+    if (!results.length) {
+
+      container.innerHTML = `
         <div class="search-empty">
           No results found
         </div>
       `;
+
     } else {
-      matches.forEach(page => {
-        const result = document.createElement("button");
 
-        result.className = "search-result";
+      results.forEach(item => {
 
-        result.innerHTML = `
+        const button =
+          document.createElement("button");
+
+        button.className = "search-result";
+
+        button.innerHTML = `
           <span class="search-result-title">
-            ${page.title}
+            ${item[1]}
           </span>
 
           <span class="search-result-category">
-            ${page.category}
+            ${item[2]}
           </span>
         `;
 
-        result.addEventListener("click", () => {
+        button.addEventListener("click", () => {
           closeSearch();
-          showPage(page.id);
+          showPage(item[0]);
         });
 
-        results.appendChild(result);
+        container.appendChild(button);
       });
     }
 
-    document.querySelector(".search-box")?.appendChild(results);
+    box.appendChild(container);
   }
 
   searchInput?.addEventListener("input", () => {
-    showSearchResults(searchInput.value);
+    search(searchInput.value);
   });
 
 
   /* Profile */
 
-  const profileButton = document.getElementById("profileButton");
-  const profileMenu = document.getElementById("profileMenu");
-
-  function closeProfileMenu() {
-    profileMenu?.classList.remove("active");
-  }
-
   profileButton?.addEventListener("click", event => {
     event.stopPropagation();
 
     profileMenu?.classList.toggle("active");
-
     closeLanguageMenu();
   });
 
 
-  /* Dropdown Demo */
+  /* Dropdown */
 
-  document.querySelectorAll(".demo-dropdown").forEach(dropdown => {
-    const button = dropdown.querySelector(".dropdown-button");
-    const menu = dropdown.querySelector(".dropdown-menu");
+  document
+    .querySelectorAll(".demo-dropdown")
+    .forEach(dropdown => {
 
-    button?.addEventListener("click", event => {
-      event.stopPropagation();
+      const button =
+        dropdown.querySelector(".dropdown-button");
 
-      menu?.classList.toggle("active");
-    });
-  });
+      const menu =
+        dropdown.querySelector(".dropdown-menu");
 
+      button?.addEventListener("click", event => {
+        event.stopPropagation();
 
-  /* Tabs Demo */
-
-  document.querySelectorAll(".tabs-demo").forEach(tabs => {
-    const buttons = tabs.querySelectorAll(".tab-button");
-    const contents = tabs.querySelectorAll(".tab-content");
-
-    buttons.forEach(button => {
-      button.addEventListener("click", () => {
-        const target = button.dataset.tab;
-
-        buttons.forEach(item => {
-          item.classList.remove("active");
-        });
-
-        contents.forEach(content => {
-          content.classList.remove("active");
-        });
-
-        button.classList.add("active");
-
-        const targetContent = tabs.querySelector(
-          `[data-tab-content="${target}"]`
-        );
-
-        targetContent?.classList.add("active");
+        menu?.classList.toggle("active");
       });
+
     });
-  });
 
 
-  /* Modal Demo */
+  /* Tabs */
 
-  const modal = document.querySelector(".demo-modal");
-  const openModalButton = document.querySelector(".open-modal");
-  const closeModalButtons =
-    document.querySelectorAll(".close-modal");
+  document
+    .querySelectorAll(".tabs-demo")
+    .forEach(tabs => {
 
-  function openModal() {
-    modal?.classList.add("active");
-  }
+      const buttons =
+        tabs.querySelectorAll(".tab-button");
 
-  function closeModal() {
-    modal?.classList.remove("active");
-  }
+      const contents =
+        tabs.querySelectorAll(".tab-content");
 
-  openModalButton?.addEventListener("click", openModal);
+      buttons.forEach(button => {
 
-  closeModalButtons.forEach(button => {
-    button.addEventListener("click", closeModal);
-  });
+        button.addEventListener("click", () => {
 
-  modal?.addEventListener("click", event => {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
+          const target =
+            button.dataset.tab;
+
+          buttons.forEach(item => {
+            item.classList.remove("active");
+          });
+
+          contents.forEach(content => {
+            content.classList.remove("active");
+          });
+
+          button.classList.add("active");
+
+          const targetContent =
+            tabs.querySelector(
+              `[data-tab-content="${target}"]`
+            );
+
+          targetContent?.classList.add("active");
+
+        });
+
+      });
+
+    });
+
+
+  /* Modal */
+
+  document
+    .querySelectorAll(".open-modal")
+    .forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const modal =
+          document.querySelector(".demo-modal");
+
+        modal?.classList.add("active");
+
+      });
+
+    });
+
+  document
+    .querySelectorAll(".close-modal")
+    .forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const modal =
+          document.querySelector(".demo-modal");
+
+        modal?.classList.remove("active");
+
+      });
+
+    });
+
+  document
+    .querySelector(".demo-modal")
+    ?.addEventListener("click", event => {
+
+      if (
+        event.target.classList.contains("demo-modal")
+      ) {
+        event.target.classList.remove("active");
+      }
+
+    });
 
 
   /* Copy Code */
 
-  document.querySelectorAll(".copy-code").forEach(button => {
-    button.addEventListener("click", async () => {
-      const codeBlock = button.closest(".code-block");
+  document
+    .querySelectorAll(".copy-code")
+    .forEach(button => {
 
-      const code = codeBlock?.querySelector("code");
+      button.addEventListener("click", async () => {
 
-      if (!code) return;
+        const block =
+          button.closest(".code-block");
 
-      try {
-        await navigator.clipboard.writeText(code.innerText);
+        const code =
+          block?.querySelector("code");
 
-        const originalText = button.textContent;
+        if (!code) return;
 
-        button.textContent = "Copied!";
+        try {
 
-        setTimeout(() => {
-          button.textContent = originalText;
-        }, 1500);
+          await navigator.clipboard.writeText(
+            code.textContent
+          );
 
-      } catch (error) {
-        console.error("Copy failed:", error);
-      }
+          const oldText =
+            button.textContent;
+
+          button.textContent = "Copied!";
+
+          setTimeout(() => {
+            button.textContent = oldText;
+          }, 1500);
+
+        } catch (error) {
+
+          const textarea =
+            document.createElement("textarea");
+
+          textarea.value =
+            code.textContent;
+
+          document.body.appendChild(textarea);
+
+          textarea.select();
+
+          document.execCommand("copy");
+
+          textarea.remove();
+
+          button.textContent = "Copied!";
+
+          setTimeout(() => {
+            button.textContent = "Copy";
+          }, 1500);
+        }
+
+      });
+
     });
-  });
 
 
   /* Playground */
@@ -607,12 +559,22 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("playgroundCode");
 
   const playgroundPreview =
-    document.querySelector(".preview-content");
+    document.querySelector(
+      "#playground .preview-content"
+    );
 
   function updatePlayground() {
-    if (!playgroundCode || !playgroundPreview) return;
 
-    playgroundPreview.innerHTML = playgroundCode.value;
+    if (
+      !playgroundCode ||
+      !playgroundPreview
+    ) {
+      return;
+    }
+
+    playgroundPreview.innerHTML =
+      playgroundCode.value;
+
   }
 
   playgroundCode?.addEventListener(
@@ -621,37 +583,6 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   updatePlayground();
-
-
-  /* Keyboard */
-
-  document.addEventListener("keydown", event => {
-
-    if (event.key === "Escape") {
-      closeSearch();
-      closeSidebar();
-      closeLanguageMenu();
-      closeProfileMenu();
-      closeModal();
-    }
-
-    if (
-      (event.ctrlKey || event.metaKey) &&
-      event.key.toLowerCase() === "k"
-    ) {
-      event.preventDefault();
-      openSearch();
-    }
-
-    if (
-      event.key === "/" &&
-      document.activeElement !== searchInput &&
-      document.activeElement !== playgroundCode
-    ) {
-      event.preventDefault();
-      openSearch();
-    }
-  });
 
 
   /* Outside Click */
@@ -674,25 +605,77 @@ document.addEventListener("DOMContentLoaded", () => {
       closeProfileMenu();
     }
 
-    document.querySelectorAll(".demo-dropdown").forEach(dropdown => {
-      const menu = dropdown.querySelector(".dropdown-menu");
+    document
+      .querySelectorAll(".demo-dropdown")
+      .forEach(dropdown => {
 
-      if (
-        menu &&
-        !dropdown.contains(event.target)
-      ) {
-        menu.classList.remove("active");
-      }
-    });
+        if (!dropdown.contains(event.target)) {
+
+          dropdown
+            .querySelector(".dropdown-menu")
+            ?.classList.remove("active");
+
+        }
+
+      });
+
+  });
+
+
+  /* Keyboard */
+
+  document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+
+      closeSearch();
+      closeSidebar();
+      closeLanguageMenu();
+      closeProfileMenu();
+
+      document
+        .querySelector(".demo-modal")
+        ?.classList.remove("active");
+
+    }
+
+    if (
+      (event.ctrlKey || event.metaKey) &&
+      event.key.toLowerCase() === "k"
+    ) {
+
+      event.preventDefault();
+      openSearch();
+
+    }
+
+    if (
+      event.key === "/" &&
+      document.activeElement !== searchInput &&
+      document.activeElement !== playgroundCode
+    ) {
+
+      event.preventDefault();
+      openSearch();
+
+    }
+
   });
 
 
   /* Mobile */
 
   window.addEventListener("resize", () => {
+
     if (window.innerWidth > 700) {
       closeSidebar();
     }
+
   });
+
+
+  /* Start */
+
+  loadPage();
 
 });
