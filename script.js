@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebarOverlay = document.getElementById("sidebarOverlay");
 
   const themeButton = document.getElementById("themeButton");
+  const darkModeDemo = document.getElementById("darkModeDemo");
 
   const languageButton = document.getElementById("languageButton");
   const languageMenu = document.getElementById("languageMenu");
@@ -23,23 +24,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileButton = document.getElementById("profileButton");
   const profileMenu = document.getElementById("profileMenu");
 
+  const rtlDemo = document.getElementById("rtlDemo");
 
-  /* Sidebar */
+
+  /* Sidebar (mobile) — CSS expects .sidebar.active, not .open */
 
   function openSidebar() {
     if (!sidebar) return;
 
-    sidebar.classList.add("open");
+    sidebar.classList.add("active");
     sidebarOverlay?.classList.add("active");
-    document.body.classList.add("sidebar-open");
   }
 
   function closeSidebar() {
     if (!sidebar) return;
 
-    sidebar.classList.remove("open");
+    sidebar.classList.remove("active");
     sidebarOverlay?.classList.remove("active");
-    document.body.classList.remove("sidebar-open");
   }
 
   menuButton?.addEventListener("click", openSidebar);
@@ -161,6 +162,16 @@ document.addEventListener("DOMContentLoaded", () => {
     setTheme(light ? "dark" : "light");
   });
 
+  // The "Toggle Theme" button inside the Dark Mode docs page is a
+  // separate element from the navbar theme button — wire it to the
+  // same logic instead of leaving it dead.
+  darkModeDemo?.addEventListener("click", () => {
+    const light =
+      document.body.classList.contains("light-mode");
+
+    setTheme(light ? "dark" : "light");
+  });
+
 
   /* Language */
 
@@ -176,14 +187,44 @@ document.addEventListener("DOMContentLoaded", () => {
       docs: "Docs",
       components: "Components",
       utilities: "Utilities",
-      playground: "Playground"
+      playground: "Playground",
+
+      gettingStarted: "Getting Started",
+      foundation: "Foundation",
+      advanced: "Advanced",
+
+      tagline: "A simple, modern toolkit for building clean interfaces.",
+      getStarted: "Get Started",
+      exploreComponents: "Explore Components",
+
+      search: "Search",
+      searchPlaceholder: "Search MeowSab...",
+
+      myProfile: "My Profile",
+      profileDesc: "Manage your MeowSab preferences.",
+      settings: "Settings"
     },
 
     ar: {
       docs: "التوثيق",
       components: "المكونات",
       utilities: "الأدوات",
-      playground: "التجربة"
+      playground: "التجربة",
+
+      gettingStarted: "البداية",
+      foundation: "الأساسيات",
+      advanced: "متقدم",
+
+      tagline: "أدوات بسيطة وحديثة لبناء واجهات نظيفة.",
+      getStarted: "ابدأ الآن",
+      exploreComponents: "استكشف المكونات",
+
+      search: "بحث",
+      searchPlaceholder: "ابحث في ميوساب...",
+
+      myProfile: "ملفي الشخصي",
+      profileDesc: "إدارة إعدادات وتفضيلات ميوساب.",
+      settings: "الإعدادات"
     }
   };
 
@@ -196,6 +237,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.dir =
       language === "ar" ? "rtl" : "ltr";
 
+    // The CSS mirroring rules key off body.rtl, so keep it in sync —
+    // previously only the dir attribute was set, so the RTL layout
+    // rules never actually triggered.
+    document.body.classList.toggle("rtl", language === "ar");
+
     document.querySelectorAll(".nav-links [data-page]")
       .forEach(link => {
 
@@ -205,6 +251,19 @@ document.addEventListener("DOMContentLoaded", () => {
           link.textContent = translation[page];
         }
       });
+
+    // Generic pass for any element opted in via data-i18n
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+
+      if (translation[key]) {
+        el.textContent = translation[key];
+      }
+    });
+
+    if (searchInput && translation.searchPlaceholder) {
+      searchInput.placeholder = translation.searchPlaceholder;
+    }
 
     localStorage.setItem(
       "meowsab-language",
@@ -228,6 +287,13 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.getItem("meowsab-language") || "en";
 
   setLanguage(savedLanguage);
+
+  // Standalone "Toggle RTL" demo button on the RTL docs page —
+  // was never bound to anything before.
+  rtlDemo?.addEventListener("click", () => {
+    const isRtl = document.body.classList.contains("rtl");
+    setLanguage(isRtl ? "en" : "ar");
+  });
 
 
   /* Search */
@@ -385,14 +451,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* Dropdown */
+  /* Dropdown — HTML uses .demo-dropdown with a plain <button> trigger
+     (there's no separate .dropdown-button class), so select the
+     trigger button directly instead of a class that never existed. */
 
   document
     .querySelectorAll(".demo-dropdown")
     .forEach(dropdown => {
 
       const button =
-        dropdown.querySelector(".dropdown-button");
+        dropdown.querySelector(":scope > button");
 
       const menu =
         dropdown.querySelector(".dropdown-menu");
@@ -406,14 +474,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  /* Tabs */
+  /* Tabs — HTML uses .tab-btn (not .tab-button) and plain ids like
+     id="tab1" that match data-tab="tab1" directly (there's no
+     data-tab-content attribute in the markup). */
 
   document
     .querySelectorAll(".tabs-demo")
     .forEach(tabs => {
 
       const buttons =
-        tabs.querySelectorAll(".tab-button");
+        tabs.querySelectorAll(".tab-btn");
 
       const contents =
         tabs.querySelectorAll(".tab-content");
@@ -436,9 +506,7 @@ document.addEventListener("DOMContentLoaded", () => {
           button.classList.add("active");
 
           const targetContent =
-            tabs.querySelector(
-              `[data-tab-content="${target}"]`
-            );
+            tabs.querySelector(`#${target}`);
 
           targetContent?.classList.add("active");
 
@@ -449,49 +517,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  /* Modal */
+  /* Modal — HTML uses #openDemoModal / #closeDemoModal (class
+     "modal-close"), not the .open-modal / .close-modal classes
+     this used to look for. */
 
-  document
-    .querySelectorAll(".open-modal")
-    .forEach(button => {
+  const demoModal = document.querySelector(".demo-modal");
 
-      button.addEventListener("click", () => {
-
-        const modal =
-          document.querySelector(".demo-modal");
-
-        modal?.classList.add("active");
-
-      });
-
+  document.getElementById("openDemoModal")
+    ?.addEventListener("click", () => {
+      demoModal?.classList.add("active");
     });
 
-  document
-    .querySelectorAll(".close-modal")
-    .forEach(button => {
-
-      button.addEventListener("click", () => {
-
-        const modal =
-          document.querySelector(".demo-modal");
-
-        modal?.classList.remove("active");
-
-      });
-
+  document.getElementById("closeDemoModal")
+    ?.addEventListener("click", () => {
+      demoModal?.classList.remove("active");
     });
 
-  document
-    .querySelector(".demo-modal")
-    ?.addEventListener("click", event => {
-
-      if (
-        event.target.classList.contains("demo-modal")
-      ) {
-        event.target.classList.remove("active");
-      }
-
-    });
+  demoModal?.addEventListener("click", event => {
+    if (event.target === demoModal) {
+      demoModal.classList.remove("active");
+    }
+  });
 
 
   /* Copy Code */
@@ -553,15 +599,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  /* Playground */
+  /* Playground — HTML's preview element is #playgroundPreview
+     (class "playground-preview"), not ".preview-content", and the
+     Run button never had a click handler. */
 
   const playgroundCode =
     document.getElementById("playgroundCode");
 
   const playgroundPreview =
-    document.querySelector(
-      "#playground .preview-content"
-    );
+    document.getElementById("playgroundPreview");
+
+  const runPlaygroundButton =
+    document.getElementById("runPlayground");
 
   function updatePlayground() {
 
@@ -579,6 +628,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   playgroundCode?.addEventListener(
     "input",
+    updatePlayground
+  );
+
+  runPlaygroundButton?.addEventListener(
+    "click",
     updatePlayground
   );
 
@@ -633,9 +687,7 @@ document.addEventListener("DOMContentLoaded", () => {
       closeLanguageMenu();
       closeProfileMenu();
 
-      document
-        .querySelector(".demo-modal")
-        ?.classList.remove("active");
+      demoModal?.classList.remove("active");
 
     }
 
@@ -667,10 +719,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", () => {
 
-    if (window.innerWidth > 700) {
+    if (window.innerWidth > 900) {
       closeSidebar();
     }
 
+  });
+
+
+  /* Syntax Highlighting */
+
+  function escapeHtml(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  function highlightHtml(text) {
+    const pattern = /(<!--[\s\S]*?-->)|(<\/?[a-zA-Z][\w:-]*)|(\s[a-zA-Z_:][\w:-]*(?=\s*=))|(=)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(\/?>)/g;
+
+    return text.replace(pattern, (m, comment, tag, attr, eq, str, close) => {
+      if (comment) return `<span class="tok-comment">${escapeHtml(m)}</span>`;
+      if (tag) return `<span class="tok-tag">${escapeHtml(m)}</span>`;
+      if (attr) {
+        const ws = m.match(/^\s*/)[0];
+        return `${ws}<span class="tok-attr">${escapeHtml(m.trim())}</span>`;
+      }
+      if (eq) return `<span class="tok-punct">${escapeHtml(m)}</span>`;
+      if (str) return `<span class="tok-string">${escapeHtml(m)}</span>`;
+      if (close) return `<span class="tok-tag">${escapeHtml(m)}</span>`;
+      return escapeHtml(m);
+    });
+  }
+
+  function highlightCss(text) {
+    const pattern = /(\/\*[\s\S]*?\*\/)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(@[\w-]+)|(--[\w-]+|\bvar\b)|(#[0-9a-fA-F]{3,8}\b)|(-?\d*\.?\d+(?:px|rem|em|%|vh|vw|s|ms|deg)?)|([.:#]?[a-zA-Z][\w-]*)(?=\s*[,{])|([a-zA-Z-]+)(?=\s*:)|([{}();:,])/g;
+
+    return text.replace(pattern, (m, comment, str, atrule, variable, hex, number, selector, property, punct) => {
+      if (comment) return `<span class="tok-comment">${escapeHtml(m)}</span>`;
+      if (str) return `<span class="tok-string">${escapeHtml(m)}</span>`;
+      if (atrule) return `<span class="tok-atrule">${escapeHtml(m)}</span>`;
+      if (variable) return `<span class="tok-variable">${escapeHtml(m)}</span>`;
+      if (hex) return `<span class="tok-hex">${escapeHtml(m)}</span>`;
+      if (number) return `<span class="tok-number">${escapeHtml(m)}</span>`;
+      if (selector) return `<span class="tok-selector">${escapeHtml(m)}</span>`;
+      if (property) return `<span class="tok-property">${escapeHtml(m)}</span>`;
+      if (punct) return `<span class="tok-punct">${escapeHtml(m)}</span>`;
+      return escapeHtml(m);
+    });
+  }
+
+  function highlightJs(text) {
+    const keywords = "const|let|var|function|return|if|else|for|while|new|class|extends|import|export|default|from|async|await|true|false|null|undefined|this|typeof|of|in|break|continue|switch|case|try|catch|finally|throw";
+    const pattern = new RegExp(
+      `(\\/\\/.*|\\/\\*[\\s\\S]*?\\*\\/)|(\`(?:[^\`\\\\]|\\\\.)*\`|"(?:[^"\\\\]|\\\\.)*"|'(?:[^'\\\\]|\\\\.)*')|(\\b(?:${keywords})\\b)|(\\b\\d+\\.?\\d*\\b)|([{}()\\[\\];:,.])`,
+      "g"
+    );
+
+    return text.replace(pattern, (m, comment, str, keyword, number, punct) => {
+      if (comment) return `<span class="tok-comment">${escapeHtml(m)}</span>`;
+      if (str) return `<span class="tok-string">${escapeHtml(m)}</span>`;
+      if (keyword) return `<span class="tok-keyword">${escapeHtml(m)}</span>`;
+      if (number) return `<span class="tok-number">${escapeHtml(m)}</span>`;
+      if (punct) return `<span class="tok-punct">${escapeHtml(m)}</span>`;
+      return escapeHtml(m);
+    });
+  }
+
+  document.querySelectorAll(".code-block").forEach(block => {
+    const label = block.querySelector(".code-header span")?.textContent.trim().toLowerCase();
+    const code = block.querySelector("code");
+
+    if (!code || !label) return;
+
+    const raw = code.textContent;
+
+    if (label === "html") {
+      code.innerHTML = highlightHtml(raw);
+    } else if (label === "css") {
+      code.innerHTML = highlightCss(raw);
+    } else if (label === "js") {
+      code.innerHTML = highlightJs(raw);
+    }
   });
 
 
