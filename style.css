@@ -468,11 +468,6 @@ main {
 }
 
 .copy-code {
-  position: absolute;
-
-  top: 9px;
-  right: 9px;
-
   padding: 5px 9px;
 
   color: var(--text-secondary);
@@ -1232,4 +1227,448 @@ body.rtl .profile-menu {
   body.rtl main {
     margin-right: 0;
   }
+}
+
+/* ============================================================
+   FIXES: components/utilities used in index.html that never
+   had matching CSS rules (buttons, cards, demo boxes, etc.)
+   ============================================================ */
+
+/* Page headers */
+.page-header {
+  margin-bottom: 15px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Docs / Components / Utilities landing grids */
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.docs-card {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.docs-card:hover {
+  border-color: var(--purple);
+  background: var(--surface-2);
+  transform: translateY(-3px);
+}
+
+.docs-card h3 {
+  margin-top: 0;
+  color: var(--text);
+}
+
+.docs-card p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+/* ms-btn system, used across nearly every component demo */
+.ms-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 10px 17px;
+  margin: 0 6px 6px 0;
+
+  border-radius: 8px;
+  border: 1px solid transparent;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  transition: var(--transition);
+}
+
+.ms-btn.ms-primary {
+  color: white;
+  background: var(--purple);
+  border-color: var(--purple);
+}
+
+.ms-btn.ms-primary:hover {
+  background: var(--purple-dark);
+  transform: translateY(-1px);
+}
+
+.ms-btn.ms-secondary {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.ms-btn.ms-secondary:hover {
+  border-color: var(--purple);
+  background: var(--surface-2);
+}
+
+.ms-btn.ms-danger {
+  color: white;
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+.ms-btn.ms-danger:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Badge (Badge component demo) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 4px 10px;
+  margin-right: 6px;
+
+  color: var(--purple-light);
+  background: rgba(139, 92, 246, 0.12);
+
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Alerts component demo */
+.alert {
+  padding: 13px 15px;
+  margin: 10px 0;
+
+  color: var(--text-secondary);
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--purple);
+  border-radius: 8px;
+}
+
+/* Code block header bar (language label + copy button) */
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 9px 15px;
+
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Introduction page layout */
+.example {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.example-info {
+  flex: 1;
+  min-width: 220px;
+}
+
+.example .code-block {
+  flex: 1.2;
+  min-width: 280px;
+  margin: 0;
+}
+
+/* Hero logo */
+.hero-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+
+/* Colors demo swatches */
+.color-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 130px;
+  height: 70px;
+  margin: 0 8px 8px 0;
+
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+
+  border-radius: 10px;
+}
+
+.color-box:nth-child(1) { background: var(--purple); }
+.color-box:nth-child(2) { background: var(--purple-dark); }
+.color-box:nth-child(3) {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* Spacing demo */
+.spacing-demo {
+  display: inline-block;
+  padding: 20px;
+
+  color: var(--purple-light);
+  background: rgba(139, 92, 246, 0.12);
+
+  border: 1px dashed var(--purple);
+  border-radius: 8px;
+
+  font-weight: 600;
+}
+
+/* Layout demo boxes (One / Two / Three) */
+.layout-demo {
+  display: flex;
+  gap: 10px;
+}
+
+.layout-demo > div {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+
+  color: var(--text-secondary);
+  background: var(--surface-2);
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* Flex / Grid demo boxes (numbered children) */
+.flex-demo > div,
+.grid-demo > div {
+  min-height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+
+  color: var(--text-secondary);
+  background: var(--surface-2);
+
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+
+/* Position demo */
+.position-demo {
+  position: relative;
+  display: inline-block;
+
+  padding: 25px 40px;
+
+  color: var(--text-secondary);
+  background: var(--surface-2);
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* Display demo */
+.display-demo {
+  display: block;
+
+  padding: 12px 16px;
+  margin-bottom: 8px;
+
+  color: var(--text-secondary);
+  background: var(--surface-2);
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.preview span {
+  color: var(--text-secondary);
+}
+
+/* Shadow demo */
+.shadow-demo {
+  display: inline-block;
+
+  padding: 25px 35px;
+
+  color: var(--text);
+  background: var(--surface);
+
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Border demo */
+.border-demo {
+  display: inline-block;
+
+  padding: 20px 30px;
+
+  color: var(--text-secondary);
+
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+}
+
+/* Effect demo (hover lift) */
+.effect-demo {
+  padding: 12px 20px;
+
+  color: white;
+  background: var(--purple);
+
+  border: 0;
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  transition: transform 0.2s ease;
+}
+
+.effect-demo:hover {
+  transform: translateY(-3px);
+}
+
+/* Responsive demo text */
+.responsive-demo {
+  color: var(--text-secondary);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Demo navbar buttons (Navbar component demo) */
+.demo-navbar button {
+  padding: 6px 12px;
+  margin-left: 4px;
+
+  color: var(--text-secondary);
+  background: transparent;
+
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.demo-navbar button:hover {
+  color: white;
+  border-color: var(--purple);
+}
+
+/* Demo dropdown wrapper (matches JS .demo-dropdown, not .dropdown) */
+.demo-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Demo modal close button */
+.modal-close {
+  color: var(--text-secondary);
+
+  background: none;
+  border: 0;
+
+  font-size: 25px;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: white;
+}
+
+/* Demo modal overlay (matches JS .demo-modal / #demoModal, not .ms-modal) */
+.demo-modal {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  z-index: 2000;
+}
+
+.demo-modal.active {
+  display: flex;
+}
+
+/* ============================================================
+   Syntax highlighting for code blocks
+   ============================================================ */
+
+.tok-comment  { color: #6b7280; font-style: italic; }
+.tok-string   { color: #86efac; }
+.tok-keyword  { color: #f472b6; }
+.tok-atrule   { color: #f472b6; }
+.tok-number   { color: #fbbf24; }
+.tok-hex      { color: #fbbf24; }
+.tok-variable { color: #67e8f9; }
+.tok-tag      { color: #f472b6; }
+.tok-attr     { color: #67e8f9; }
+.tok-property { color: #93c5fd; }
+.tok-selector { color: #93c5fd; }
+.tok-punct    { color: #ddd6fe; opacity: 0.75; }
+
+/* ============================================================
+   Light mode (was toggled by JS but never had styles)
+   ============================================================ */
+
+body.light-mode {
+  --bg: #f6f5fa;
+  --bg-secondary: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eeecf6;
+
+  --text: #1a1523;
+  --text-secondary: #514b5e;
+  --text-muted: #8b8494;
+
+  --border: #e3e0ec;
+}
+
+body.light-mode .navbar {
+  background: rgba(246, 245, 250, 0.92);
+}
+
+body.light-mode .code-block pre,
+body.light-mode .code-header,
+body.light-mode #playgroundCode {
+  background: #0e0a16;
+  color: #ddd6fe;
+  border-color: #292133;
+}
+
+body.light-mode .search-overlay,
+body.light-mode .ms-modal,
+body.light-mode .demo-modal {
+  background: rgba(0, 0, 0, 0.5);
 }
